@@ -1,0 +1,17 @@
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\controller\AsociacionController.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\controller\ClubController.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\controller\CompeticionController.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\controller\EntrenadorController.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\controller\HomeController.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\controller\JugadorController.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\FutbolApplication.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\model\Asociacion.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\model\Club.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\model\Competicion.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\model\Entrenador.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\model\Jugador.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\repository\AsociacionRepository.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\repository\ClubRepository.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\repository\CompeticionRepository.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\repository\EntrenadorRepository.java
+C:\SpringFramework\proyectos\futbol\src\main\java\com\futbol\app\repository\JugadorRepository.java

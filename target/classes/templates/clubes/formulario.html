@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Club</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d1117, #1f2937);
+            color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 60px auto;
+            background: rgba(33, 43, 54, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .form-check-label {
+            margin-left: 8px;
+        }
+
+        .btn-success {
+            background: linear-gradient(90deg, #00c9ff, #92fe9d);
+            border: none;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            border: none;
+        }
+
+        .btn:hover {
+            opacity: 0.92;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h2>Formulario Club</h2>
+
+    <form th:action="@{/clubes/guardar}" th:object="${club}" method="post">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+            <label class="form-label">Nombre del Club</label>
+            <input type="text" class="form-control" th:field="*{nombre}" placeholder="Ej: Deportivo Tech" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Entrenador</label>
+            <select class="form-select" th:field="*{entrenador.id}">
+                <option value="" disabled selected>Seleccione un entrenador</option>
+                <option th:each="e : ${entrenadores}" th:value="${e.id}" th:text="${e.nombre + ' ' + e.apellido}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Asociación</label>
+            <select class="form-select" th:field="*{asociacion.id}">
+                <option value="" disabled selected>Seleccione una asociación</option>
+                <option th:each="a : ${asociaciones}" th:value="${a.id}" th:text="${a.nombre}"></option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Competiciones</label>
+            <div class="row row-cols-2 row-cols-md-3 g-2">
+                <div class="form-check" th:each="c : ${competiciones}">
+                    <input type="checkbox" class="form-check-input" th:field="*{competiciones}" th:value="${c.id}" />
+                    <label class="form-check-label" th:text="${c.nombre}"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Jugadores</label>
+            <div class="row row-cols-2 row-cols-md-3 g-2">
+                <div class="form-check" th:each="j : ${jugadores}">
+                    <input type="checkbox" class="form-check-input"
+                           name="jugadorIds"
+                           th:value="${j.id}"
+                           th:checked="${club.jugadores.contains(j)}" />
+                    <label class="form-check-label" th:text="${j.nombre + ' ' + j.apellido}"></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <a th:href="@{/clubes}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
