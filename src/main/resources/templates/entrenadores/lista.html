@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Entrenadores</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #11151c, #2c3e50);
+            color: #f1f1f1;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+        }
+
+        h2 {
+            font-weight: bold;
+            text-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .card {
+            background: rgba(33, 43, 54, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+        }
+
+        .table {
+            color: #dee2e6;
+        }
+
+        .table thead {
+            background-color: #0dcaf0;
+            color: #000;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-custom {
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .btn-success {
+            background: linear-gradient(90deg, #00c9ff, #92fe9d);
+            border: none;
+        }
+
+        .btn-warning {
+            color: #212529;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            border: none;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            border: none;
+        }
+
+        a.btn:hover {
+            opacity: 0.92;
+        }
+    </style>
+</head>
+<body class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>🧑‍🏫 Lista de Entrenadores</h2>
+        <a href="/entrenadores/nuevo" class="btn btn-success btn-custom">➕ Nuevo Entrenador</a>
+    </div>
+
+    <div class="card">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Club</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="e : ${entrenadores}">
+                    <td th:text="${e.id}">1</td>
+                    <td th:text="${e.nombre}">Nombre</td>
+                    <td th:text="${e.apellido}">Apellido</td>
+                    <td>
+                        <span th:text="${e.club != null ? e.club.nombre : '—'}">—</span>
+                    </td>
+                    <td>
+                        <a th:href="@{/entrenadores/editar/{id}(id=${e.id})}" class="btn btn-sm btn-warning btn-custom me-1">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <a th:href="@{/entrenadores/eliminar/{id}(id=${e.id})}" class="btn btn-sm btn-danger btn-custom">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-secondary btn-custom">🏠 Volver al inicio</a>
+    </div>
+</body>
+</html>

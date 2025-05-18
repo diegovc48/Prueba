@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Clubes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(145deg, #1a1f2b, #2d3548);
+            color: #f1f1f1;
+            font-family: 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        h2 {
+            font-weight: 700;
+            text-shadow: 0 0 6px rgba(0,0,0,0.4);
+        }
+        .card {
+            background-color: #212b36;
+            border-radius: 1rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+        .table {
+            color: #dee2e6;
+        }
+        .table thead {
+            background-color: #0dcaf0;
+            color: #000;
+        }
+        .table-hover tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .btn-custom {
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        .btn-warning {
+            color: #212529;
+        }
+        .btn-success {
+            background: linear-gradient(90deg, #1de9b6, #1dc4e9);
+            border: none;
+        }
+        .btn-danger {
+            background: #dc3545;
+            border: none;
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        a.btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>⚽ Gestión de Clubes</h2>
+        <a href="/clubes/nuevo" class="btn btn-success btn-custom">➕ Añadir Club</a>
+    </div>
+
+    <div class="card p-4">
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Entrenador</th>
+                    <th>Asociación</th>
+                    <th>Competiciones</th>
+                    <th>Jugadores</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="club : ${clubes}">
+                    <td th:text="${club.id}">1</td>
+                    <td th:text="${club.nombre}">Nombre</td>
+                    <td th:text="${club.entrenador != null ? club.entrenador.nombre + ' ' + club.entrenador.apellido : '—'}">Entrenador</td>
+                    <td th:text="${club.asociacion != null ? club.asociacion.nombre : '—'}">Asociación</td>
+                    <td>
+                        <ul class="mb-0 ps-3">
+                            <li th:each="c : ${club.competiciones}" th:text="${c.nombre}"></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="mb-0 ps-3">
+                            <li th:each="j : ${club.jugadores}" th:text="${j.nombre + ' ' + j.apellido}"></li>
+                        </ul>
+                    </td>
+                    <td>
+                        <a th:href="@{/clubes/editar/{id}(id=${club.id})}" class="btn btn-sm btn-warning btn-custom me-1">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <a th:href="@{/clubes/eliminar/{id}(id=${club.id})}" class="btn btn-sm btn-danger btn-custom">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/" class="btn btn-secondary btn-custom">🏠 Volver al inicio</a>
+    </div>
+</body>
+</html>
